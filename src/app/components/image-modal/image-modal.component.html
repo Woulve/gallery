@@ -1,0 +1,37 @@
+<div class="modal" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="onClose()">&times;</span>
+
+    <div
+      class="metadata-panel"
+      *ngIf="image"
+      (click)="$event.stopPropagation()"
+    >
+      <h3>Camera Details</h3>
+      <div class="metadata-item" *ngIf="image.cameraModel">
+        <span class="label">Camera:</span>
+        <span class="value">{{ image.cameraModel }}</span>
+      </div>
+      <div class="metadata-item" *ngIf="image.fStop">
+        <span class="label">F-Stop:</span>
+        <span class="value">f/{{ image.fStop }}</span>
+      </div>
+      <div class="metadata-item" *ngIf="image.exposureTime">
+        <span class="label">Exposure Time:</span>
+        <span class="value">{{ image.exposureTime }}</span>
+      </div>
+      <div class="metadata-item" *ngIf="image.iso">
+        <span class="label">ISO:</span>
+        <span class="value">{{ image.iso }}</span>
+      </div>
+      <div class="metadata-item" *ngIf="image.focalLength">
+        <span class="label">Focal Length:</span>
+        <span class="value">{{ image.focalLength }}mm</span>
+      </div>
+    </div>
+
+    <div class="image-container">
+      <img *ngIf="image" [src]="image.url" [alt]="image.alt || ''" />
+    </div>
+  </div>
+</div>
