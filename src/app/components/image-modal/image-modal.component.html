@@ -40,7 +40,7 @@
     </div>
 
     <div class="image-container">
-      <img [src]="image().url" [alt]="image().alt || ''" />
+      <img [src]="image().fullUrl || image().url" [alt]="image().alt || 'Full size photo'" />
     </div>
   </div>
 </div>
