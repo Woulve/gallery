@@ -88,8 +88,20 @@
       </button>
     }
 
-    <div class="image-container">
-      <img [src]="image().fullUrl || image().url" [alt]="image().alt || 'Full size photo'" />
+    <div class="image-container" [style.--aspect-ratio]="(image().fullWidth || image().width) / (image().fullHeight || image().height)">
+      <img
+        class="placeholder-image"
+        [src]="image().url"
+        [alt]="image().alt || 'Full size photo'"
+        aria-hidden="true"
+      />
+      <img
+        class="full-image"
+        [class.loaded]="fullImageLoaded()"
+        [src]="image().fullUrl || image().url"
+        [alt]="image().alt || 'Full size photo'"
+        (load)="onFullImageLoad()"
+      />
     </div>
 
     @if (hasNext()) {

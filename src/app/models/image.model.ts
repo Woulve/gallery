@@ -6,6 +6,8 @@ export interface Image {
   tags?: string[];
   width: number;
   height: number;
+  fullWidth?: number;
+  fullHeight?: number;
   // Camera metadata
   cameraMaker?: string;
   cameraModel?: string;

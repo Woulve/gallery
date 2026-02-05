@@ -76,7 +76,7 @@ async function processImage(sourcePath, filename) {
 
   // Create full-size version (for lightbox)
   const full = sharp(sourcePath).rotate();
-  await full
+  const fullMeta = await full
     .resize({
       width: FULL_SIZE,
       height: FULL_SIZE,
@@ -93,6 +93,8 @@ async function processImage(sourcePath, filename) {
     timestamp: exif.DateTimeOriginal?.toISOString() || new Date().toISOString(),
     width: minifiedMeta.width,
     height: minifiedMeta.height,
+    fullWidth: fullMeta.width,
+    fullHeight: fullMeta.height,
   };
 
   if (exif.Make) data.cameraMaker = exif.Make.trim();

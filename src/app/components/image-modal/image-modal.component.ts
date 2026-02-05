@@ -1,4 +1,4 @@
-import { Component, input, output, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, output, computed, signal, effect, ChangeDetectionStrategy } from '@angular/core';
 import { Image } from '../../models/image.model';
 
 @Component({
@@ -18,6 +18,19 @@ export class ImageModalComponent {
   images = input.required<Image[]>();
   close = output<void>();
   navigate = output<Image>();
+
+  fullImageLoaded = signal(false);
+
+  constructor() {
+    effect(() => {
+      this.image();
+      this.fullImageLoaded.set(false);
+    });
+  }
+
+  onFullImageLoad() {
+    this.fullImageLoaded.set(true);
+  }
 
   currentIndex = computed(() => {
     const currentImage = this.image();
