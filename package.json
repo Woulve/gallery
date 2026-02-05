@@ -6,7 +6,7 @@
     "start": "ng serve",
     "process:images": "node scripts/process-images.mjs",
     "build": "ng build",
-    "build:ghpages": "ng build --base-href /gallery/ && cp dist/gallery/browser/index.html dist/gallery/browser/404.html",
+    "build:ghpages": "ng build --base-href / && cp dist/gallery/browser/index.html dist/gallery/browser/404.html",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
