@@ -1,17 +1,16 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Image } from '../../models/image.model';
 
 @Component({
   selector: 'app-image-modal',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './image-modal.component.html',
   styleUrls: ['./image-modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageModalComponent {
-  @Input() image: Image | null = null;
-  @Output() close = new EventEmitter<void>();
+  image = input.required<Image>();
+  close = output<void>();
 
   onClose() {
     this.close.emit();

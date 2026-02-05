@@ -1,41 +1,50 @@
 <div #galleryContainer class="image-gallery">
-  <div
-    *ngFor="let row of layoutRows"
-    class="gallery-row"
-    [class.last-row]="row.isLastRow"
-    [style.height.px]="row.height"
-    [style.gap.px]="row.spacing || 10"
-  >
+  @for (row of layoutRows(); track row) {
     <div
-      *ngFor="let image of row.images"
-      class="image-item"
-      [style.width.px]="image.displayWidth"
-      [style.height.px]="image.displayHeight"
-      (click)="openModal(image)"
-    >
-      <img
-        [ngSrc]="image.url"
-        [width]="image.displayWidth"
-        [height]="image.displayHeight"
-        [alt]="image.alt || ''"
-      />
-      <div class="overlay">
-        <div class="image-details">
-          <span>{{ image.timestamp | date : 'dd.MM.yyyy' }}</span>
-          <div *ngIf="image.tags" class="image-tags">
-            <span *ngFor="let tag of image.tags" class="image-tag">{{
-              tag
-            }}</span>
+      class="gallery-row"
+      [class.last-row]="row.isLastRow"
+      [style.height.px]="row.height"
+      [style.gap.px]="row.spacing || 10"
+      >
+      @for (image of row.images; track image) {
+        <div
+          class="image-item"
+          [style.width.px]="image.displayWidth"
+          [style.height.px]="image.displayHeight"
+          (click)="openModal(image)"
+          >
+          <img
+            [ngSrc]="image.url"
+            [width]="image.displayWidth"
+            [height]="image.displayHeight"
+            [alt]="image.alt || ''"
+            />
+          <div class="overlay">
+            <div class="image-details">
+              <span>{{ image.timestamp | date : 'dd.MM.yyyy' }}</span>
+              @if (image.tags) {
+                <div class="image-tags">
+                  @for (tag of image.tags; track tag) {
+                    <span class="image-tag">{{
+                      tag
+                    }}</span>
+                  }
+                </div>
+              }
+            </div>
+            @if (image.alt) {
+              <div class="image-alt">{{ image.alt }}</div>
+            }
           </div>
         </div>
-        <div *ngIf="image.alt" class="image-alt">{{ image.alt }}</div>
-      </div>
+      }
     </div>
-  </div>
+  }
 </div>
 
-<app-image-modal
-  *ngIf="selectedImage"
-  [image]="selectedImage"
-  (close)="closeModal()"
-></app-image-modal>
+@if (selectedImage(); as img) {
+  <app-image-modal
+    [image]="img"
+    (close)="closeModal()"
+  ></app-image-modal>
+}
