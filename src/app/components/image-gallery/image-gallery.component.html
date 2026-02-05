@@ -45,6 +45,8 @@
 @if (selectedImage(); as img) {
   <app-image-modal
     [image]="img"
+    [images]="images"
     (close)="closeModal()"
+    (navigate)="navigateToImage($event)"
   ></app-image-modal>
 }

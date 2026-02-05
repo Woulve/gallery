@@ -1,46 +1,108 @@
 <div class="modal" (click)="onClose()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <span class="close" (click)="onClose()">&times;</span>
+    <button class="close" (click)="onClose()" aria-label="Close modal" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
 
-    <div
-      class="metadata-panel"
-      (click)="$event.stopPropagation()"
+    @if (hasExifData()) {
+      <div
+        class="metadata-hover-zone"
+        (click)="$event.stopPropagation()"
+        >
+        <div class="metadata-panel">
+          <div class="panel-handle" aria-hidden="true"></div>
+          <div class="metadata-content">
+            @if (image().cameraModel) {
+              <div class="metadata-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <span class="label">Camera</span>
+                <span class="value">{{ image().cameraModel }}</span>
+              </div>
+            }
+            @if (image().focalLength) {
+              <div class="metadata-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="6"/>
+                  <circle cx="12" cy="12" r="2"/>
+                </svg>
+                <span class="label">Focal Length</span>
+                <span class="value">{{ image().focalLength }}mm</span>
+              </div>
+            }
+            @if (image().fStop) {
+              <div class="metadata-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2l3 7h-6l3-7"/>
+                  <path d="M22 12l-7 3v-6l7 3"/>
+                  <path d="M12 22l-3-7h6l-3 7"/>
+                  <path d="M2 12l7-3v6l-7-3"/>
+                </svg>
+                <span class="label">Aperture</span>
+                <span class="value">f/{{ image().fStop }}</span>
+              </div>
+            }
+            @if (image().exposureTime) {
+              <div class="metadata-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span class="label">Shutter</span>
+                <span class="value">{{ image().exposureTime }}</span>
+              </div>
+            }
+            @if (image().iso) {
+              <div class="metadata-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M12 3v3m0 12v3M3 12h3m12 0h3"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"/>
+                </svg>
+                <span class="label">ISO</span>
+                <span class="value">{{ image().iso }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (hasPrevious()) {
+      <button
+        class="nav-arrow nav-prev"
+        (click)="onPrevious()"
+        aria-label="Previous image"
+        type="button"
       >
-      <h3>Camera Details</h3>
-      @if (image().cameraModel) {
-        <div class="metadata-item">
-          <span class="label">Camera:</span>
-          <span class="value">{{ image().cameraModel }}</span>
-        </div>
-      }
-      @if (image().fStop) {
-        <div class="metadata-item">
-          <span class="label">F-Stop:</span>
-          <span class="value">f/{{ image().fStop }}</span>
-        </div>
-      }
-      @if (image().exposureTime) {
-        <div class="metadata-item">
-          <span class="label">Exposure Time:</span>
-          <span class="value">{{ image().exposureTime }}</span>
-        </div>
-      }
-      @if (image().iso) {
-        <div class="metadata-item">
-          <span class="label">ISO:</span>
-          <span class="value">{{ image().iso }}</span>
-        </div>
-      }
-      @if (image().focalLength) {
-        <div class="metadata-item">
-          <span class="label">Focal Length:</span>
-          <span class="value">{{ image().focalLength }}mm</span>
-        </div>
-      }
-    </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    }
 
     <div class="image-container">
       <img [src]="image().fullUrl || image().url" [alt]="image().alt || 'Full size photo'" />
     </div>
+
+    @if (hasNext()) {
+      <button
+        class="nav-arrow nav-next"
+        (click)="onNext()"
+        aria-label="Next image"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 6 15 12 9 18"></polyline>
+        </svg>
+      </button>
+    }
   </div>
 </div>

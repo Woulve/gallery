@@ -81,6 +81,11 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     window.history.pushState({}, '', '/gallery');
   }
 
+  navigateToImage(image: Image) {
+    this.selectedImage.set(image);
+    window.history.pushState({}, '', `/gallery/${btoa(image.url)}`);
+  }
+
   private findImage(url: string): Image | null {
     return this.images.find((image) => image.url === url) || null;
   }

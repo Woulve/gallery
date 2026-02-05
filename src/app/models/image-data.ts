@@ -1,8 +1,8 @@
 import { Image } from './image.model';
 
 export const ImageData: Image[] = [
-  { url: 'images/minified/IMG_4576.webp', fullUrl: 'images/full/IMG_4576.webp', timestamp: new Date('2026-02-05T19:51:35.928Z'), width: 600, height: 400 },
-  { url: 'images/minified/IMG_3929-Enhanced-NR.webp', fullUrl: 'images/full/IMG_3929-Enhanced-NR.webp', timestamp: new Date('2026-02-05T19:51:34.954Z'), width: 600, height: 400 },
+  { url: 'images/minified/IMG_4576.webp', fullUrl: 'images/full/IMG_4576.webp', timestamp: new Date('2026-02-05T20:10:08.362Z'), width: 600, height: 400 },
+  { url: 'images/minified/IMG_3929-Enhanced-NR.webp', fullUrl: 'images/full/IMG_3929-Enhanced-NR.webp', timestamp: new Date('2026-02-05T20:10:07.415Z'), width: 600, height: 400 },
   { url: 'images/minified/IMG_5722.webp', fullUrl: 'images/full/IMG_5722.webp', timestamp: new Date('2026-02-05T15:49:18.000Z'), width: 267, height: 400, cameraMaker: 'Canon', cameraModel: 'Canon EOS R7', fStop: 8, exposureTime: '1/1000', iso: 1250, focalLength: 400 },
   { url: 'images/minified/IMG_5714.webp', fullUrl: 'images/full/IMG_5714.webp', timestamp: new Date('2026-01-30T20:23:32.000Z'), width: 600, height: 400, cameraMaker: 'Canon', cameraModel: 'Canon EOS R7', fStop: 5.6, exposureTime: '1/25', iso: 3200, focalLength: 35 },
   { url: 'images/minified/IMG_5561.webp', fullUrl: 'images/full/IMG_5561.webp', timestamp: new Date('2025-09-13T16:02:59.000Z'), width: 600, height: 400, cameraMaker: 'Canon', cameraModel: 'Canon EOS R7', fStop: 9, exposureTime: '1/200', iso: 640, focalLength: 200 },

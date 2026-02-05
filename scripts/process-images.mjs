@@ -48,6 +48,11 @@ async function processImage(sourcePath, filename) {
   // Extract EXIF from original before any processing
   const exif = await extractExif(sourcePath);
 
+  // Warn if no camera EXIF data
+  if (!exif.Make && !exif.Model) {
+    console.warn(`  ⚠ ${filename}: No camera EXIF data found`);
+  }
+
   // Get original dimensions
   const image = sharp(sourcePath);
   const metadata = await image.metadata();
