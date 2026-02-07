@@ -98,7 +98,7 @@
       <img
         class="full-image"
         [class.loaded]="fullImageLoaded()"
-        [src]="image().fullUrl || image().url"
+        [src]="fullUrl()"
         [alt]="image().alt || 'Full size photo'"
         (load)="onFullImageLoad()"
       />

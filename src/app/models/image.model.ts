@@ -1,9 +1,10 @@
+import { ImageTag } from './tag.model';
+
 export interface Image {
   url: string;
-  fullUrl?: string;
   alt?: string;
   timestamp: Date;
-  tags?: string[];
+  tags?: ImageTag[];
   width: number;
   height: number;
   fullWidth?: number;

@@ -1,14 +1,16 @@
+$gap: 10px;
+$transition: 0.3s ease;
+
 .image-gallery {
   width: 100%;
-  padding: 0 10px;
+  padding: 0 $gap;
   box-sizing: border-box;
 }
 
 .gallery-row {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  width: 100%;
+  gap: $gap;
+  margin-bottom: $gap;
 
   &.last-row {
     justify-content: flex-start;
@@ -26,7 +28,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform $transition;
   }
 
   &:hover img {
@@ -39,61 +41,54 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: rgba(0, 0, 0, 0.5);
+    padding: $gap;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
     color: white;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    padding: 10px;
-    box-sizing: border-box;
+    transition: opacity $transition;
   }
 
   &:hover .overlay {
     opacity: 1;
   }
 
-  .image-details {
-    font-size: 12px;
+  .overlay-content {
     display: flex;
     flex-direction: column;
-  }
-
-  .image-tags {
-    margin-top: 5px;
-    display: flex;
-    gap: 5px;
-  }
-
-  .image-tag {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-size: 10px;
+    gap: 6px;
   }
 
   .image-alt {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.85;
   }
 
-  &:hover .image-alt {
-    opacity: 1;
+  .image-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .image-tag {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
   }
 }
 
 @media (max-width: 768px) {
+  $gap-mobile: 5px;
+
   .image-gallery {
-    padding: 0 5px;
+    padding: 0 $gap-mobile;
   }
 
   .gallery-row {
-    margin-bottom: 5px;
+    margin-bottom: $gap-mobile;
   }
 }

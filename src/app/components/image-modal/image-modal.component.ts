@@ -21,6 +21,8 @@ export class ImageModalComponent {
 
   fullImageLoaded = signal(false);
 
+  fullUrl = computed(() => this.image().url.replace('minified', 'full'));
+
   constructor() {
     effect(() => {
       this.image();

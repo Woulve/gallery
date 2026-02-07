@@ -1,3 +1,8 @@
+<app-tag-filter
+  [selectedTags]="selectedTags()"
+  (tagsChange)="onTagsChange($event)"
+/>
+
 <div #galleryContainer class="image-gallery">
   @for (row of layoutRows(); track row) {
     <div
@@ -20,21 +25,18 @@
             [alt]="image.alt || ''"
             />
           <div class="overlay">
-            <div class="image-details">
-              <span>{{ image.timestamp | date : 'dd.MM.yyyy' }}</span>
-              @if (image.tags) {
+            <div class="overlay-content">
+              @if (image.alt) {
+                <span class="image-alt">{{ image.alt }}</span>
+              }
+              @if (image.tags && image.tags.length > 0) {
                 <div class="image-tags">
                   @for (tag of image.tags; track tag) {
-                    <span class="image-tag">{{
-                      tag
-                    }}</span>
+                    <span class="image-tag">{{ tagLabels[tag] }}</span>
                   }
                 </div>
               }
             </div>
-            @if (image.alt) {
-              <div class="image-alt">{{ image.alt }}</div>
-            }
           </div>
         </div>
       }
@@ -45,8 +47,8 @@
 @if (selectedImage(); as img) {
   <app-image-modal
     [image]="img"
-    [images]="images"
+    [images]="allImages"
     (close)="closeModal()"
     (navigate)="navigateToImage($event)"
-  ></app-image-modal>
+  />
 }

@@ -1,0 +1,111 @@
+.filter-hover-zone {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+
+  &:hover .filter-panel {
+    transform: translate(0, -50%);
+  }
+}
+
+.filter-panel {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(calc(-100% + 25px), -50%);
+  background-color: rgba(var(--accent-color-rgb), 0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  padding-right: 32px;
+  max-width: 280px;
+  border-radius: 0 12px 12px 0;
+  color: var(--text-color);
+  transition: transform 0.3s ease;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+
+  .panel-handle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 48px;
+    background-color: var(--text-color);
+    opacity: 0.7;
+    border-radius: 3px;
+  }
+}
+
+.tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag-button {
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+  }
+}
+
+.clear-button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--secondary-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-align: left;
+  width: 100%;
+
+  &:hover {
+    color: var(--text-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    max-width: 240px;
+    padding: 16px;
+    padding-right: 28px;
+  }
+
+  .tag-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
