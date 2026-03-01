@@ -1,0 +1,28 @@
+<div class="filter-hover-zone">
+  <nav class="filter-panel" aria-label="Filter images by tag">
+    <div class="panel-handle" aria-hidden="true"></div>
+    <div class="tag-list" role="group" aria-label="Available tags">
+      @for (tag of allTags; track tag) {
+        <button
+          type="button"
+          class="tag-button"
+          [class.active]="isSelected()(tag)"
+          [attr.aria-pressed]="isSelected()(tag)"
+          (click)="toggleTag(tag)"
+        >
+          {{ tagLabels[tag] }}
+        </button>
+      }
+    </div>
+    @if (selectedTags().length > 0) {
+      <button
+        type="button"
+        class="clear-button"
+        (click)="clearAll()"
+        aria-label="Clear all tag filters"
+      >
+        Clear filters
+      </button>
+    }
+  </nav>
+</div>

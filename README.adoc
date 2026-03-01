@@ -1,0 +1,73 @@
+= Gallery
+
+Photography portfolio built with Angular 21.
+
+== Features
+
+* Justified grid layout with responsive design
+* Lightbox modal with EXIF metadata display
+* Automated image processing (thumbnails + WebP conversion)
+* Dark mode support
+* Shareable image URLs
+
+== Quick Start
+
+[source,bash]
+----
+npm install
+npm start
+----
+
+Development server runs at http://localhost:4200
+
+== Scripts
+
+[cols="1,2"]
+|===
+|Command |Description
+
+|`npm start`
+|Start development server
+
+|`npm run build`
+|Production build
+
+|`npm run process:images`
+|Process source images
+
+|`npm run update:gallery`
+|Process images and commit changes
+|===
+
+== Image Processing
+
+Configure the source path in `.env`:
+
+[source,bash]
+----
+cp .env.example .env
+# Edit .env to set GALLERY_SOURCE
+----
+
+Then run:
+
+[source,bash]
+----
+npm run process:images
+----
+
+This extracts EXIF metadata and generates:
+
+* `public/images/minified/` — 400px height thumbnails
+* `public/images/full/` — 1920px max lightbox images
+
+== Deployment
+
+Automatically deployed to GitHub Pages on push to master via GitHub Actions.
+
+== Tech Stack
+
+* Angular 21
+* TypeScript (strict mode)
+* Sharp (image processing)
+* exifr (EXIF extraction)
